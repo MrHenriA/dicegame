@@ -129,5 +129,5 @@ function init() {
   document.getElementById("current-1").style.animation = " fadeInUp 1s 1";
   document.getElementById("rules").style.animation = "bounceIn 1s 1";
 
-  setTimeout(function() {}, 5000);
+  
 }
