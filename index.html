@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="css/style.css">
+        <link type="text/css" rel="stylesheet" href="css/animate.css">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <script src="https://use.fontawesome.com/6a6a178baf.js"></script>
+        <title>Pig Game</title>
+    </head>
+
+    <body>
+        <div class="wrapper clearfix">
+
+            <div class="player-0-panel active">
+                <div class="player-name" id="name-0">Player 1</div>
+                <div class="player-score" id="score-0">43</div>
+                <div class="player-current-box">
+                    <div class="player-current-label">Current</div>
+                    <div class="player-current-score" id="current-0">11</div>
+                </div>
+            </div>
+
+            <div class="player-1-panel">
+                <div class="player-name" id="name-1">Player 2</div>
+                <div class="player-score" id="score-1">72</div>
+                <div class="player-current-box">
+                    <div class="player-current-label">Current</div>
+                    <div class="player-current-score" id="current-1">0</div>
+                </div>
+            </div>
+
+            <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
+            <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
+            <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
+
+            <img src="/img/dice-5.png" alt="Dice" class="dice">
+          
+            <div id="rules" class="container">
+             
+                    
+                
+                <i id="x-icon" class="fa fa-times-circle" aria-hidden="true"></i>
+                <div id="rule1">
+                    Roll the Dice
+                </div>
+                <div id="rule2">
+                    You roll 1, lose current score and turn
+                </div>
+                <div id="rule3">
+                    Hold to keep current score
+                </div>
+                <div id="rule4">
+                    First to 50 wins!
+                </div>
+            </div>
+         
+
+        </div>
+
+        <script src="js/app.js"></script>
+    </body>
+
+</html>
