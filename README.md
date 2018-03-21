@@ -1,6 +1,6 @@
 
 **Dice Game**
-https://thisdudehenry.github.io/dicegame/
+https://MrHenryA.github.io/dicegame/
 
 Applying knowledge of basic JavaScript algorithms, CSS, Animation and HTML to simulate a dice game.
 
