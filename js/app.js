@@ -9,6 +9,7 @@ GAME RULES:
 
 var targetScore = 75;
 var scores, roundScore, activePlayer, gamePlaying, safeRollStreak, soundEnabled;
+var scores, roundScore, activePlayer, gamePlaying, safeRollStreak;
 
 var diceDom = document.querySelector(".dice");
 var eventFeed = document.getElementById("event-feed");
@@ -48,6 +49,12 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
   } else {
     showEvent("💥 Bust! Round pot burned. Player " + (activePlayer + 1) + " loses the turn.");
     playTone(130, 0.16, "sawtooth");
+      burst("hot");
+    } else {
+      showEvent("Player " + (activePlayer + 1) + " rolled " + dice + ". Pot is " + roundScore + ".");
+    }
+  } else {
+    showEvent("💥 Bust! Round pot burned. Player " + (activePlayer + 1) + " loses the turn.");
     burst("bust");
     nextPlayer();
   }
@@ -129,7 +136,6 @@ function init() {
   roundScore = 0;
   activePlayer = 0;
   safeRollStreak = 0;
-  soundEnabled = soundEnabled !== false;
 
   diceDom.style.display = "none";
   setText("target-score", targetScore);
