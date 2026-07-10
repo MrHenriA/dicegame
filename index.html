@@ -3,63 +3,85 @@
 
     <head>
         <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600,900" rel="stylesheet" type="text/css">
         <link type="text/css" rel="stylesheet" href="css/style.css">
         <link type="text/css" rel="stylesheet" href="css/animate.css">
-       
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-        
         <script src="https://use.fontawesome.com/6a6a178baf.js"></script>
         <title>Pig Game</title>
     </head>
 
     <body>
-        <div class="wrapper clearfix">
+        <div class="wrapper clearfix arcade-cabinet">
+            <div class="arcade-topper">
+                <span class="marquee-light"></span>
+                <div>
+                    <small>Chili Bowl inspired instant-play cabinet</small>
+                    <strong>Pig Dice Arcade</strong>
+                </div>
+                <button class="btn-sound" aria-pressed="true"><span class="btn-icon">🔊</span>Sound</button>
+                <span class="marquee-light"></span>
+            </div>
+
+            <aside class="game-rail game-rail-left" aria-hidden="true">
+                <span>Flash</span>
+                <span>HTML5</span>
+                <span>Emu</span>
+            </aside>
+            <aside class="game-rail game-rail-right" aria-hidden="true">
+                <span>Roll</span>
+                <span>Bank</span>
+                <span>Win</span>
+            </aside>
+
+            <div class="game-hud" aria-live="polite">
+                <div class="hud-pill"><span>Target</span><strong id="target-score">75</strong></div>
+                <div class="hud-pill hot"><span>Streak</span><strong id="streak-count">x0</strong></div>
+                <div class="hud-pill"><span>Risk</span><strong id="risk-level">Safe</strong></div>
+            </div>
 
             <div class="player-0-panel active">
                 <div class="player-name" id="name-0">Player 1</div>
                 <div class="player-score" id="score-0">43</div>
+                <div class="score-track"><span id="progress-0"></span></div>
                 <div class="player-current-box">
-                    <div class="player-current-label">Current</div>
+                    <div class="player-current-label">Round Pot</div>
                     <div class="player-current-score" id="current-0">11</div>
+                    <div class="cashout-hint" id="hint-0">Roll to build heat</div>
                 </div>
             </div>
 
             <div class="player-1-panel">
                 <div class="player-name" id="name-1">Player 2</div>
                 <div class="player-score" id="score-1">72</div>
+                <div class="score-track"><span id="progress-1"></span></div>
                 <div class="player-current-box">
-                    <div class="player-current-label">Current</div>
+                    <div class="player-current-label">Round Pot</div>
                     <div class="player-current-score" id="current-1">0</div>
+                    <div class="cashout-hint" id="hint-1">Bank before you bust</div>
                 </div>
             </div>
 
-            <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
-            <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
-            <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
+            <div class="table-center">
+                <div class="combo-badge" id="combo-badge">Combo x1</div>
+                <img src="img/dice-5.png" alt="Dice" class="dice">
+                <div class="event-feed" id="event-feed">Pick-up-and-play arcade dice. Chase streaks, bank points, win fast.</div>
+            </div>
 
-            <img src="img/dice-5.png" alt="Dice" class="dice">
-          
+            <button class="btn-new"><span class="btn-icon">✦</span>New run</button>
+            <button class="btn-roll"><span class="btn-icon">🎲</span>Roll</button>
+            <button class="btn-hold"><span class="btn-icon">💰</span>Bank</button>
+
+            <div class="burst-layer" id="burst-layer" aria-hidden="true"></div>
+
             <div id="rules" class="container">
-             
-                    
-                
-                <i id="x-icon" class="fa fa-times-circle" aria-hidden="true"></i>
-                <div id="rule1">
-                    Roll the Dice
-                </div>
-                <div id="rule2">
-                    You roll 1, lose current score and turn
-                </div>
-                <div id="rule3">
-                    Hold to keep current score
-                </div>
-                <div id="rule4">
-                    First to 50 wins!
-                </div>
+                <button id="x-icon" aria-label="Close rules">×</button>
+                <div id="rule1">Instant-play arcade Pig: roll to grow your round pot</div>
+                <div id="rule2">Every 3 safe rolls triggers a hot-streak bonus</div>
+                <div id="rule3">Bank to lock points before you roll a 1</div>
+                <div id="rule4">First to 75 wins the neon crown — perfect for quick embeds</div>
             </div>
-         
-
         </div>
 
         <script src="js/app.js"></script>
