@@ -552,3 +552,140 @@ button:hover .btn-icon {
         margin: -36px auto 34px;
     }
 }
+
+/**********************************************
+*** CHILI BOWL INSPIRED ARCADE CABINET
+**********************************************/
+
+.arcade-cabinet::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.055),
+        rgba(255,255,255,0.055) 1px,
+        transparent 1px,
+        transparent 5px
+    );
+    mix-blend-mode: overlay;
+}
+
+.arcade-topper {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    z-index: 6;
+    display: grid;
+    grid-template-columns: 18px minmax(260px, 1fr) 124px 18px;
+    gap: 12px;
+    align-items: center;
+    width: min(690px, calc(100% - 80px));
+    transform: translateX(-50%);
+    padding: 10px 14px;
+    border: 2px solid rgba(254, 202, 87, 0.45);
+    border-radius: 22px;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(11, 13, 34, 0.94), rgba(91, 39, 112, 0.86));
+    box-shadow: 0 16px 36px rgba(19, 15, 64, 0.34), inset 0 0 24px rgba(254, 202, 87, 0.12);
+    text-align: center;
+}
+
+.arcade-topper small {
+    display: block;
+    color: rgba(255,255,255,0.64);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.arcade-topper strong {
+    display: block;
+    margin-top: 4px;
+    color: var(--gold);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 17px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 14px rgba(254, 202, 87, 0.7);
+}
+
+.marquee-light {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 5px rgba(255, 71, 87, 0.14), 0 0 18px rgba(255, 71, 87, 0.95);
+    animation: marqueeBlink 0.9s alternate infinite;
+}
+
+.btn-sound {
+    position: static;
+    width: auto;
+    transform: none;
+    padding: 10px 12px;
+    color: #fff;
+    background: rgba(255,255,255,0.12);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22);
+    font-size: 12px;
+}
+
+.btn-sound:hover {
+    transform: translateY(-2px);
+}
+
+.game-rail {
+    position: absolute;
+    top: 180px;
+    z-index: 2;
+    display: grid;
+    gap: 12px;
+}
+
+.game-rail-left { left: 18px; }
+.game-rail-right { right: 18px; }
+
+.game-rail span {
+    display: grid;
+    place-items: center;
+    width: 66px;
+    height: 58px;
+    border: 1px solid rgba(255,255,255,0.42);
+    border-radius: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(255,71,87,0.78), rgba(48,51,107,0.82));
+    box-shadow: 0 12px 26px rgba(19,15,64,0.24);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+}
+
+.game-rail-right span {
+    transform: rotate(3deg);
+}
+
+@keyframes marqueeBlink {
+    from { filter: hue-rotate(0deg); opacity: 0.62; }
+    to { filter: hue-rotate(70deg); opacity: 1; }
+}
+
+@media (max-width: 920px) {
+    .game-rail { display: none; }
+}
+
+@media (max-width: 760px) {
+    .arcade-topper {
+        grid-template-columns: 12px 1fr 96px 12px;
+        width: calc(100% - 24px);
+        padding: 8px;
+    }
+
+    .arcade-topper small { display: none; }
+    .arcade-topper strong { font-size: 10px; }
+    .marquee-light { width: 12px; height: 12px; }
+    .btn-sound { padding: 8px; font-size: 11px; }
+}

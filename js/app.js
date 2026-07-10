@@ -8,12 +8,14 @@ GAME RULES:
 */
 
 var targetScore = 75;
+var scores, roundScore, activePlayer, gamePlaying, safeRollStreak, soundEnabled;
 var scores, roundScore, activePlayer, gamePlaying, safeRollStreak;
 
 var diceDom = document.querySelector(".dice");
 var eventFeed = document.getElementById("event-feed");
 var comboBadge = document.getElementById("combo-badge");
 var burstLayer = document.getElementById("burst-layer");
+var soundButton = document.querySelector(".btn-sound");
 
 init();
 
@@ -38,6 +40,15 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
 
     if (bonus) {
       showEvent("🔥 Hot streak! Bonus +" + bonus + " added.");
+      playTone(740, 0.08, "triangle");
+      burst("hot");
+    } else {
+      showEvent("Player " + (activePlayer + 1) + " rolled " + dice + ". Pot is " + roundScore + ".");
+      playTone(420 + dice * 35, 0.05, "square");
+    }
+  } else {
+    showEvent("💥 Bust! Round pot burned. Player " + (activePlayer + 1) + " loses the turn.");
+    playTone(130, 0.16, "sawtooth");
       burst("hot");
     } else {
       showEvent("Player " + (activePlayer + 1) + " rolled " + dice + ". Pot is " + roundScore + ".");
@@ -62,6 +73,13 @@ document.querySelector("#x-icon").addEventListener("click", function() {
   }, 500);
 });
 
+soundButton.addEventListener("click", function() {
+  soundEnabled = !soundEnabled;
+  soundButton.setAttribute("aria-pressed", soundEnabled);
+  soundButton.innerHTML = soundEnabled ? '<span class="btn-icon">🔊</span>Sound' : '<span class="btn-icon">🔇</span>Muted';
+  if (soundEnabled) playTone(660, 0.06, "triangle");
+});
+
 document.querySelector(".btn-hold").addEventListener("click", function() {
   if (!gamePlaying || roundScore === 0) {
     showEvent("Build a pot first, then bank it.");
@@ -71,6 +89,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
   scores[activePlayer] += roundScore;
   setText("score-" + activePlayer, scores[activePlayer]);
   updateProgress();
+  playTone(560, 0.09, "triangle");
   burst("bank");
 
   if (scores[activePlayer] >= targetScore) {
@@ -81,6 +100,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     document.getElementById("name-" + activePlayer).style.animation = "jackInTheBox 1s 1";
     document.getElementById("score-" + activePlayer).style.animation = "flash 1s 1";
     showEvent("👑 Player " + (activePlayer + 1) + " wins the neon crown!");
+    playWinJingle();
     setTimeout(function() {
       document.querySelector(".btn-new").style.animation = "shake .9s 1";
     }, 900);
@@ -127,6 +147,8 @@ function init() {
   setText("name-1", "Player 2");
   setText("hint-0", "Your move");
   setText("hint-1", "Bank before you bust");
+  soundButton.setAttribute("aria-pressed", soundEnabled);
+  soundButton.innerHTML = soundEnabled ? '<span class="btn-icon">🔊</span>Sound' : '<span class="btn-icon">🔇</span>Muted';
 
   document.querySelector(".player-0-panel").classList.remove("winner");
   document.querySelector(".player-1-panel").classList.remove("winner");
@@ -198,6 +220,30 @@ function animateIntro() {
   document.getElementById("score-1").style.animation = "fadeInRight 1s 1";
   document.getElementById("current-0").style.animation = "fadeInUp 1s 1";
   document.getElementById("current-1").style.animation = "fadeInUp 1s 1";
+}
+
+function playTone(frequency, duration, waveType) {
+  if (!soundEnabled || !window.AudioContext && !window.webkitAudioContext) return;
+
+  var AudioEngine = window.AudioContext || window.webkitAudioContext;
+  var audioContext = new AudioEngine();
+  var oscillator = audioContext.createOscillator();
+  var gain = audioContext.createGain();
+
+  oscillator.type = waveType;
+  oscillator.frequency.value = frequency;
+  gain.gain.setValueAtTime(0.055, audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime + duration);
+}
+
+function playWinJingle() {
+  playTone(523, 0.08, "triangle");
+  setTimeout(function() { playTone(659, 0.08, "triangle"); }, 90);
+  setTimeout(function() { playTone(784, 0.16, "triangle"); }, 180);
 }
 
 function setText(id, value) {
