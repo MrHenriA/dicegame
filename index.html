@@ -13,6 +13,28 @@
     </head>
 
     <body>
+        <div class="wrapper clearfix arcade-cabinet">
+            <div class="arcade-topper">
+                <span class="marquee-light"></span>
+                <div>
+                    <small>Chili Bowl inspired instant-play cabinet</small>
+                    <strong>Pig Dice Arcade</strong>
+                </div>
+                <button class="btn-sound" aria-pressed="true"><span class="btn-icon">🔊</span>Sound</button>
+                <span class="marquee-light"></span>
+            </div>
+
+            <aside class="game-rail game-rail-left" aria-hidden="true">
+                <span>Flash</span>
+                <span>HTML5</span>
+                <span>Emu</span>
+            </aside>
+            <aside class="game-rail game-rail-right" aria-hidden="true">
+                <span>Roll</span>
+                <span>Bank</span>
+                <span>Win</span>
+            </aside>
+
         <div class="wrapper clearfix">
             <div class="game-hud" aria-live="polite">
                 <div class="hud-pill"><span>Target</span><strong id="target-score">75</strong></div>
@@ -45,7 +67,7 @@
             <div class="table-center">
                 <div class="combo-badge" id="combo-badge">Combo x1</div>
                 <img src="img/dice-5.png" alt="Dice" class="dice">
-                <div class="event-feed" id="event-feed">Roll doubles-free streaks for bonus points.</div>
+                <div class="event-feed" id="event-feed">Pick-up-and-play arcade dice. Chase streaks, bank points, win fast.</div>
             </div>
 
             <button class="btn-new"><span class="btn-icon">✦</span>New run</button>
@@ -56,6 +78,10 @@
 
             <div id="rules" class="container">
                 <button id="x-icon" aria-label="Close rules">×</button>
+                <div id="rule1">Instant-play arcade Pig: roll to grow your round pot</div>
+                <div id="rule2">Every 3 safe rolls triggers a hot-streak bonus</div>
+                <div id="rule3">Bank to lock points before you roll a 1</div>
+                <div id="rule4">First to 75 wins the neon crown — perfect for quick embeds</div>
                 <div id="rule1">Roll to grow your round pot</div>
                 <div id="rule2">Every 3 safe rolls triggers a hot-streak bonus</div>
                 <div id="rule3">Bank to lock points before you roll a 1</div>
